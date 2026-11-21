@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="See photos, details and availability for this home at Apache River Apartments.">
+  <meta name="theme-color" content="#f1f4f1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Home details | Apache River Apartments">
+  <meta property="og:description" content="See photos, details and availability for this home at Apache River Apartments.">
+  <title data-en="Home details | Apache River Apartments" data-es="Detalles del departamento | Apache River Apartments">Home details | Apache River Apartments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/modal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-en="Skip to content" data-es="Saltar al contenido">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Apache River Apartments home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><!-- Placeholder: replace with the client logo (e.g. <img src="img/logo.svg">) --><path d="M3 12c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 18c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 24c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/></svg><span class="brand-text"><span class="brand-name">APACHE RIVER</span>
+        <span class="brand-subtitle">APARTMENTS</span></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+        <span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
+        <a href="comunidad.html" data-en="Our Community" data-es="Nuestra comunidad">Our Community</a>
+        <a aria-current="page" href="departamentos.html" data-en="Residences" data-es="Departamentos">Residences</a>
+        <a href="galeria.html" data-en="Gallery" data-es="Galería">Gallery</a>
+        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
+        <div class="language-switch" role="group" aria-label="Choose language">
+          <button class="language-button is-active" type="button" data-language="en" aria-pressed="true">EN</button>
+          <span aria-hidden="true">/</span>
+          <button class="language-button" type="button" data-language="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="button button-small nav-cta" href="index.html#tour" data-en="Schedule a tour" data-es="Agenda una visita">Schedule a tour</a>
+      </nav>
+    </div>
+  </header>
+
+<main id="main-content">
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow" data-en="Residences" data-es="Departamentos">Residences</p>
+      <h1 data-en="Find your home" data-es="Encuentra tu hogar">Find your home</h1>
+      <p class="page-hero-copy" data-en="Browse our available homes and schedule a visit." data-es="Explora nuestros departamentos disponibles y agenda una visita.">Browse our available homes and schedule a visit.</p>
+    </div>
+  </section>
+
+  <section class="residences section-space">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="filter-group">
+          <button type="button" class="filter-btn is-active" aria-pressed="true" data-unit-filter="status" data-value="available" data-en="Available" data-es="Disponibles">Available</button>
+          <button type="button" class="filter-btn" aria-pressed="false" data-unit-filter="status" data-value="all" data-en="All" data-es="Todos">All</button>
+        </div>
+        <div class="filter-group">
+          <button type="button" class="filter-btn is-active" aria-pressed="true" data-unit-filter="beds" data-value="all" data-en="Any size" data-es="Cualquier tamaño">Any size</button>
+          <button type="button" class="filter-btn" aria-pressed="false" data-unit-filter="beds" data-value="1" data-en="1 bed" data-es="1 hab.">1 bed</button>
+          <button type="button" class="filter-btn" aria-pressed="false" data-unit-filter="beds" data-value="2" data-en="2 beds" data-es="2 hab.">2 beds</button>
+        </div>
+      </div>
+
+      <div class="unit-grid" id="unit-grid"></div>
+      <p class="unit-empty" id="unit-empty" hidden data-en="No homes match your filters." data-es="No hay departamentos con esos filtros.">No homes match your filters.</p>
+    </div>
+  </section>
+</main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><!-- Placeholder: replace with the client logo (e.g. <img src="img/logo.svg">) --><path d="M3 12c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 18c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 24c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/></svg><span class="brand-text"><span class="brand-name">APACHE RIVER</span><span class="brand-subtitle">APARTMENTS</span></span></a>
+        <p data-en="A place to feel at home." data-es="Un lugar para sentirte en casa.">A place to feel at home.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="comunidad.html" data-en="Our Community" data-es="Nuestra comunidad">Our Community</a>
+        <a href="departamentos.html" data-en="Residences" data-es="Departamentos">Residences</a>
+        <a href="galeria.html" data-en="Gallery" data-es="Galería">Gallery</a>
+        <a href="index.html#tour" data-en="Schedule a tour" data-es="Agenda una visita">Schedule a tour</a>
+        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
+      </nav>
+      <a class="back-top" href="#top" data-en="Back to top ↑" data-es="Volver arriba ↑">Back to top ↑</a>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="current-year"></span> Apache River Apartments</span><span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></div>
+  </footer>
+</body>
+</html>
