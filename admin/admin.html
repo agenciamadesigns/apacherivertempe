@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administración | Apache River Apartments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <!-- Opcional: solo para importar los departamentos de muestra una vez -->
+  <script src="../js/data.js"></script>
+  <script src="js/admin-schema.js" defer></script>
+  <script src="js/admin-store.js" defer></script>
+  <script src="js/admin.js" defer></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Menú principal">
+      <div class="side-brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 12c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 18c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/><path d="M3 24c4-4 6-4 10 0s6 4 10 0 4-3 6-2"/></svg>
+        <div><strong>APACHE RIVER</strong><span>Administración</span></div>
+      </div>
+      <nav class="side-nav" id="side-nav"></nav>
+      <a class="side-foot" href="../index.html" target="_blank" rel="noopener">Ver sitio web ↗</a>
+      <button class="side-foot" id="logout" type="button">Cerrar sesión</button>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="content">
+      <header class="topbar">
+        <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-controls="sidebar"><span></span><span></span><span></span></button>
+        <h1 id="page-title">Resumen</h1>
+        <span class="top-actions" id="top-actions"></span>
+      </header>
+      <main id="view" class="view"><p class="empty">Cargando…</p></main>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

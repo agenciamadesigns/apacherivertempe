@@ -144,12 +144,30 @@ const ICON = {
     data.form = form.dataset.form;
     data.language = lang();
     try {
-      if (C.formEndpoint) {
+      const SB = window.SUPABASE_CONFIG;
+if (SB) {
+  const isTour = form.dataset.form === "tour";
+  const id = crypto.randomUUID();
+  const row = isTour
+    ? { name: data.name, email: data.email, phone: data.phone || "", unit: data.unit || "", date: data.date, time: data.time, notes: data.message || "", status: "pending" }
+    : { name: data.name, email: data.email, phone: data.phone || "", topic: data.topic || "", message: data.message || "", status: "new" };
+  row.language = data.language; row.created = new Date().toISOString(); row._id = id;
+  const r = await fetch(`${SB.url}/rest/v1/${isTour ? "tours" : "inquiries"}`, {
+    method: "POST",
+    headers: { apikey: SB.anonKey, Authorization: "Bearer " + SB.anonKey, "Content-Type": "application/json", Prefer: "return=minimal" },
+    body: JSON.stringify({ id, data: row })
+  });
+  if (!r.ok) throw new Error("bad response");
+  form.reset();
+  say("Thank you! We received your request and will be in touch soon.", "¡Gracias! Recibimos tu solicitud y te contactaremos pronto.", true);
+} else if (C.formEndpoint) {
         const r = await fetch(C.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) });
         if (!r.ok) throw new Error("bad response");
         form.reset();
         say("Thank you! We received your request and will be in touch soon.", "¡Gracias! Recibimos tu solicitud y te contactaremos pronto.", true);
-      } else if (C.email) {
+      } 
+      
+      else if (C.email) {
         const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join("\n");
         window.location.href = `mailto:${C.email}?subject=${encodeURIComponent("Apache River — " + data.form)}&body=${encodeURIComponent(body)}`;
         say("Opening your email app…", "Abriendo tu aplicación de correo…", true);
