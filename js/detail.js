@@ -9,9 +9,13 @@
   const refresh = () => window.applyLanguage && window.applyLanguage();
   const big = (src) => src.replace(/w=\d+/, "w=1600");
   const svg = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
-  const CAL = svg('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>');
+  const CAL = svg(
+    '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  );
   const CHECK = svg('<path d="M5 12.5l4.5 4.5L19 7.5"/>');
-  const GRID = svg('<rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/>');
+  const GRID = svg(
+    '<rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/>',
+  );
 
   document.body.classList.add("detail-page");
   const id = new URLSearchParams(location.search).get("unit");
@@ -41,11 +45,17 @@
   const isAvail = u.status === "available";
 
   const t = document.querySelector("title");
-  if (t) { t.dataset.en = `${u.name.en} | Apache River Apartments`; t.dataset.es = `${u.name.es} | Apache River Apartments`; }
+  if (t) {
+    t.dataset.en = `${u.name.en} | Apache River Apartments`;
+    t.dataset.es = `${u.name.es} | Apache River Apartments`;
+  }
 
-  const row = (en, es, val) => `<div><dt ${bi(en, es)}>${en}</dt><dd>${val}</dd></div>`;
-  const spec = (icon, strong, label) => `<li>${icon}<div>${strong}${label}</div></li>`;
-  const bedsL = u.beds > 1 ? ["Bedrooms", "Habitaciones"] : ["Bedroom", "Habitación"];
+  const row = (en, es, val) =>
+    `<div><dt ${bi(en, es)}>${en}</dt><dd>${val}</dd></div>`;
+  const spec = (icon, strong, label) =>
+    `<li>${icon}<div>${strong}${label}</div></li>`;
+  const bedsL =
+    u.beds > 1 ? ["Bedrooms", "Habitaciones"] : ["Bedroom", "Habitación"];
   const bathsL = u.baths > 1 ? ["Bathrooms", "Baños"] : ["Bathroom", "Baño"];
 
   const primary = isAvail
@@ -55,7 +65,9 @@
     ? `<span class="unit-avail" ${bi(ae, as)}>${ae}</span>`
     : `<span class="unit-avail unit-avail-muted" ${bi(s.en, s.es)}>${s.en}</span>`;
 
-  const others = UNITS.filter((x) => x.id !== u.id && x.status !== "maintenance" && x.status !== "rented").slice(0, 3);
+  const others = UNITS.filter(
+    (x) => x.id !== u.id && x.status !== "maintenance" && x.status !== "rented",
+  ).slice(0, 3);
 
   root.innerHTML = `
   <section class="detail">
@@ -67,7 +79,13 @@
       </div>
 
       <div class="photo-grid" data-count="${shown}">
-        ${all.slice(0, shown).map((src, i) => `<button class="photo photo-${i}" type="button" data-photo="${i}" aria-label="Photo ${i + 1}" style="background-image:url('${src}')"></button>`).join("")}
+        ${all
+          .slice(0, shown)
+          .map(
+            (src, i) =>
+              `<button class="photo photo-${i}" type="button" data-photo="${i}" aria-label="Photo ${i + 1}" style="background-image:url('${src}')"></button>`,
+          )
+          .join("")}
         ${all.length > 1 ? `<button class="photos-all" type="button" data-photo="0">${GRID}<span ${bi("Show all photos", "Ver todas las fotos")}>Show all photos</span><span>(${all.length})</span></button>` : ""}
       </div>
 
@@ -85,10 +103,14 @@
             <p class="detail-text" ${bi(desc.en, desc.es)}>${desc.en}</p>
           </div>
 
-          ${u.features && u.features.length ? `<div class="detail-block">
+          ${
+            u.features && u.features.length
+              ? `<div class="detail-block">
             <h2 class="detail-h" ${bi("What this home offers", "Lo que ofrece")}>What this home offers</h2>
             <ul class="feature-list">${u.features.map((f) => `<li>${CHECK}<span ${bi(f.en, f.es)}>${f.en}</span></li>`).join("")}</ul>
-          </div>` : ""}
+          </div>`
+              : ""
+          }
 
           <div class="detail-block">
             <h2 class="detail-h" ${bi("Rental details", "Detalles de renta")}>Rental details</h2>
@@ -115,12 +137,16 @@
     </div>
   </section>
 
-  ${others.length ? `<section class="residences similar section-space">
+  ${
+    others.length
+      ? `<section class="residences similar section-space">
     <div class="container">
       <h2 class="detail-h" ${bi("More homes you may like", "Otros departamentos que te pueden gustar")}>More homes you may like</h2>
       <div class="unit-grid">${others.map(card).join("")}</div>
     </div>
-  </section>` : ""}
+  </section>`
+      : ""
+  }
 
   <div class="booking-bar"><div><p class="unit-price">${price}</p></div>${primary}</div>`;
 
@@ -134,7 +160,9 @@
   document.body.appendChild(lb);
   const img = lb.querySelector(".lb-img");
   const count = lb.querySelector(".lb-count");
-  let cur = 0, opener = null, x0 = 0;
+  let cur = 0,
+    opener = null,
+    x0 = 0;
 
   const show = (i) => {
     cur = (i + all.length) % all.length;
@@ -146,23 +174,51 @@
     opener = el;
     const es = lang() === "es";
     lb.setAttribute("aria-label", es ? "Fotos" : "Photos");
-    lb.querySelector(".lb-close").setAttribute("aria-label", es ? "Cerrar" : "Close");
-    lb.querySelector(".lb-prev").setAttribute("aria-label", es ? "Foto anterior" : "Previous photo");
-    lb.querySelector(".lb-next").setAttribute("aria-label", es ? "Foto siguiente" : "Next photo");
+    lb.querySelector(".lb-close").setAttribute(
+      "aria-label",
+      es ? "Cerrar" : "Close",
+    );
+    lb.querySelector(".lb-prev").setAttribute(
+      "aria-label",
+      es ? "Foto anterior" : "Previous photo",
+    );
+    lb.querySelector(".lb-next").setAttribute(
+      "aria-label",
+      es ? "Foto siguiente" : "Next photo",
+    );
     show(i);
     lb.hidden = false;
     document.body.classList.add("lb-open");
     lb.querySelector(".lb-close").focus();
   };
-  const close = () => { lb.hidden = true; document.body.classList.remove("lb-open"); if (opener) opener.focus(); };
+  const close = () => {
+    lb.hidden = true;
+    document.body.classList.remove("lb-open");
+    if (opener) opener.focus();
+  };
 
-  root.querySelectorAll("[data-photo]").forEach((b) => b.addEventListener("click", () => open(Number(b.dataset.photo), b)));
+  root
+    .querySelectorAll("[data-photo]")
+    .forEach((b) =>
+      b.addEventListener("click", () => open(Number(b.dataset.photo), b)),
+    );
   lb.querySelector(".lb-close").addEventListener("click", close);
   lb.querySelector(".lb-prev").addEventListener("click", () => show(cur - 1));
   lb.querySelector(".lb-next").addEventListener("click", () => show(cur + 1));
-  lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
-  lb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) close();
+  });
+  lb.addEventListener(
+    "touchstart",
+    (e) => {
+      x0 = e.touches[0].clientX;
+    },
+    { passive: true },
+  );
+  lb.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+  });
   document.addEventListener("keydown", (e) => {
     if (lb.hidden) return;
     if (e.key === "Escape") close();

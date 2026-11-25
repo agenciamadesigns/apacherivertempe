@@ -1,0 +1,78 @@
+.plans{
+    padding-top:56px
+}
+.plans-head{
+    max-width:640px;
+    margin-bottom:28px
+}
+.plans-head h2{
+    margin:6px 0 10px
+}
+.plans-head p{
+    margin:0;color:#5b6b63
+}
+.plans-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);gap:18px
+}
+.plan-card{
+    background:#fff;
+    border:1px solid #dde4df;
+    border-radius:14px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;gap:12px
+}
+.plan-card.is-b{
+    border-color:#b8923c
+}
+.plan-name{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#b8923c;
+    margin:0;
+    font-weight:600
+}
+.plan-count{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    line-height:1;
+    margin:0;color:#1f3a30
+}
+.plan-count small{
+    font-family:"DM Sans",sans-serif;
+    font-size:15px;color:#5b6b63;
+    margin-left:6px
+}
+.plan-note{
+    margin:0;color:#5b6b63;
+    font-size:14px
+}
+.plan-units{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:auto;
+    padding-top:6px
+}
+.plan-chip{
+    display:inline-block;
+    padding:6px 14px;
+    border:1px solid #cfd9d3;
+    border-radius:99px;
+    color:#1f3a30;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    transition:background .15s,color .15s,border-color .15s
+}
+.plan-chip:hover,.plan-chip:focus-visible{
+    background:#1f3a30;
+    color:#fff;
+    border-color:#1f3a30
+}
+@media(max-width:900px){
+    .plans-grid{grid-template-columns:1fr}
+    .plans{padding-top:36px}
+}

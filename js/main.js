@@ -19,7 +19,11 @@ function setLanguage(language) {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  try { localStorage.setItem("apache-river-language", selectedLanguage); } catch (error) { /* storage unavailable */ }
+  try {
+    localStorage.setItem("apache-river-language", selectedLanguage);
+  } catch (error) {
+    /* storage unavailable */
+  }
 }
 window.applyLanguage = () => setLanguage(document.documentElement.lang);
 
@@ -42,29 +46,50 @@ if (menuToggle && mainNav) {
   menuToggle.addEventListener("click", () => {
     const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Open navigation" : "Close navigation",
+    );
     mainNav.classList.toggle("is-open", !isOpen);
     document.body.classList.toggle("menu-open", !isOpen);
   });
-  mainNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-  window.addEventListener("resize", () => { if (window.innerWidth > 760) closeMenu(); });
+  mainNav
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) closeMenu();
+  });
 }
 
 document.querySelector("#current-year").textContent = new Date().getFullYear();
 
 let savedLanguage = "en";
-try { savedLanguage = localStorage.getItem("apache-river-language") || "en"; } catch (error) { /* default to English */ }
+try {
+  savedLanguage = localStorage.getItem("apache-river-language") || "en";
+} catch (error) {
+  /* default to English */
+}
 setLanguage(savedLanguage);
 
 // Subtle entrance motion; respects reduced-motion preferences.
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
 if ("IntersectionObserver" in window && !reduceMotion) {
-  const revealTargets = document.querySelectorAll(".intro-grid, .section-heading, .amenity-card, .tour-grid, .contact-grid");
+  const revealTargets = document.querySelectorAll(
+    ".intro-grid, .section-heading, .amenity-card, .tour-grid, .contact-grid",
+  );
   revealTargets.forEach((el) => el.classList.add("reveal-ready"));
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.12 });
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 },
+  );
   revealTargets.forEach((el) => revealObserver.observe(el));
 }

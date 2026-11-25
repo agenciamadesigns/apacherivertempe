@@ -1,0 +1,151 @@
+.days {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+  scroll-snap-type: x proximity;
+}
+.day-chip {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 68px;
+  padding: 10px 8px;
+  border: 1px solid #cdd6d1;
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.25;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+.day-chip small {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.day-chip b {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+}
+.day-chip:hover {
+  border-color: var(--brass);
+}
+.day-chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+.day-chip.is-active small {
+  color: var(--river);
+}
+.slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(98px, 1fr));
+  gap: 8px;
+}
+.slot {
+  padding: 11px 6px;
+  border: 1px solid #cdd6d1;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+.slot:hover:not(:disabled) {
+  border-color: var(--brass);
+}
+.slot.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+.slot.is-taken {
+  background: var(--mist);
+  color: var(--muted);
+  text-decoration: line-through;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.slots-hint {
+  grid-column: 1/-1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.booking-done {
+  text-align: center;
+}
+.done-mark {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #e7f3ec;
+  color: #2f6b4f;
+  font-size: 28px;
+}
+.booking-done h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+}
+.booking-done > p {
+  max-width: 420px;
+  margin: 0 auto 24px;
+  color: var(--text);
+}
+.done-list {
+  margin: 0 0 28px;
+  text-align: left;
+  border-top: 1px solid var(--line);
+}
+.done-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.done-list dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+.done-list dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+.done-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sms-note {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
