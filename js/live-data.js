@@ -76,6 +76,14 @@
     });
   }
 
+  if (window.APACHE_UNITS) {
+    // por si hubiera dos registros con el mismo ID, se muestra solo uno
+    const seen = new Set();
+    window.APACHE_UNITS = window.APACHE_UNITS.filter(
+      (u) => !seen.has(u.id) && seen.add(u.id),
+    );
+  }
+
   const site = get("site");
   const main = site && site.find((r) => r.id === "main");
   if (main) {
